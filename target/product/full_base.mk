@@ -39,17 +39,14 @@ PRODUCT_PACKAGES += \
 
 # Additional settings used in all AOSP builds
 PRODUCT_PROPERTY_OVERRIDES := \
-    ro.config.ringtone=Ring_Synth_04.ogg \
-    ro.config.notification_sound=pixiedust.ogg
+    ro.config.ringtone=Titania.ogg \
+    ro.config.notification_sound=Tethys.ogg
 
 # Put en_US first in the list, so make it default.
 PRODUCT_LOCALES := en_US
 
-# Include drawables for all densities
-PRODUCT_AAPT_CONFIG := normal
-
 # Get some sounds
-$(call inherit-product-if-exists, frameworks/base/data/sounds/AllAudio.mk)
+$(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackage13_48.mk)
 
 # Get the TTS language packs
 $(call inherit-product-if-exists, external/svox/pico/lang/all_pico_languages.mk)
@@ -59,3 +56,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/locales_full.mk)
 
 # Get everything else from the parent package
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_no_telephony.mk)
+
+# Call the vendor if it exists
+$(call inherit-product-if-exists, vendor/aosparadox/configs/common.mk)
