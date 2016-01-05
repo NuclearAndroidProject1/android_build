@@ -621,6 +621,31 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
 
   system_progress = 0.75
 
+  script.Print("N")
+  script.Print("Nu")
+  script.Print("Nuc")
+  script.Print("Nucl")
+  script.Print("Nucle")
+  script.Print("Nuclea")
+  script.Print("Nuclear")
+  script.Print("NuclearA")
+  script.Print("NuclearAn")
+  script.Print("NuclearAnd")
+  script.Print("NuclearAndr")
+  script.Print("NuclearAndro")
+  script.Print("NuclearAndroi")
+  script.Print("NuclearAndroid")
+  script.Print("NuclearAndroidP")
+  script.Print("NuclearAndroidPr")
+  script.Print("NuclearAndroidPro")
+  script.Print("NuclearAndroidProj")
+  script.Print("NuclearAndroidProje")
+  script.Print("NuclearAndroidProjec")
+  script.Print("NuclearAndroidProject")
+  script.Print("                    NAP")
+  script.Print("............NuclearTeam")
+  script.Print("............Android 6.0")
+
   if OPTIONS.wipe_user_data:
     system_progress -= 0.1
   if HasVendorPartition(input_zip):
@@ -694,6 +719,11 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
     script.ShowProgress(0.05, 5)
     script.RunBackup("restore")
 
+  script.Print("Flashing SuperSU...")
+  common.ZipWriteStr(output_zip, "supersu/supersu.zip", ""+input_zip.read("SYSTEM/addon.d/UPDATE-SuperSU.zip"))
+  script.Mount("/system")
+  script.FlashSuperSU()
+
   script.ShowProgress(0.05, 5)
   script.WriteRawImage("/boot", "boot.img")
 
@@ -702,6 +732,11 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
 
   if OPTIONS.extra_script is not None:
     script.AppendExtra(OPTIONS.extra_script)
+
+  # SuperSU leave /system unmounted while we need it mounted here to avoid
+  # a warning from non-Multirom TWRP
+  if block_based:
+    script.Mount("/system")
 
   script.UnmountAll()
 
