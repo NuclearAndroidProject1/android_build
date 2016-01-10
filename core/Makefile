@@ -878,6 +878,9 @@ endif
 # substitute other keys for this one.
 OTA_PUBLIC_KEYS := $(DEFAULT_SYSTEM_DEV_CERTIFICATE).x509.pem
 
+# Optimizaciones Nuclear
+include $(BUILD_SYSTEM)/nuclearopts.mk
+
 # Generate a file containing the keys that will be read by the
 # recovery binary.
 RECOVERY_INSTALL_OTA_KEYS := \
