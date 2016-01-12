@@ -93,7 +93,7 @@ $(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS :=  -mthumb \
 
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += $(NUCLEAR_GCC_CFLAGS)
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += $(NUCLEAR_GCC_CPPFLAGS)
-$(combo_2nd_arch_prefix)TARGET_GLOBAL_LDFLAGS += $(NUCLEAR_GCC_LDFLAGS)
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_LDFLAGS += $(NUCLEAR_GCC_LDFLAGS)   
 
 # Set FORCE_ARM_DEBUGGING to "true" in your buildspec.mk
 # or in your environment to force a full arm build, even for
@@ -135,13 +135,13 @@ ifneq ($(filter 4.6 4.6.% 4.7 4.7.% 4.8 4.8.% 4.9 4.9.% 5.0 5.0.% 5.1 5.1.% 6.0 
  $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += -fno-builtin-sin \
  			-fno-strict-volatile-bitfields
 endif
- 
+
 # Currently building with GCC 5.x yields to false positives errors
 # This ensures the build is not hatled on the following errors
 ifneq ($(filter $($(combo_2nd_arch_prefix)TARGET_GCC_VERSION), 5.1 5.1.% 5.2 5.2.% 5.3),)
     TARGET_GLOBAL_CFLAGS += -Wno-array-bounds -Wno-strict-overflow
 endif
-
+ 
 # This is to avoid the dreaded warning compiler message:
 #   note: the mangling of 'va_list' has changed in GCC 4.4
 #
@@ -163,7 +163,7 @@ $(combo_2nd_arch_prefix)TARGET_GLOBAL_LDFLAGS += \
 			-Wl,--hash-style=gnu \
 			$(arch_variant_ldflags)
 
-ifneq ($(strip $(ENABLE_ARM_MODE)),true)
+ ifneq ($(strip $(ENABLE_ARM_MODE)),true)
  $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += -mthumb-interwork
 endif
 

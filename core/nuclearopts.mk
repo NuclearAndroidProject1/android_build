@@ -9,7 +9,7 @@
 # 03
 ifeq ($(USE_O3_OPTIMIZATIONS),true)
 # General optimization level of target ARM compiled with GCC. Default: -O2
-NUCLEAR_GCC_CFLAGS_ARM := -O3
+NUCLEAR_GCC_CFLAGS_ARM := -Os
 
 # General optimization level of target THUMB compiled with GCC. Default: -Os
 NUCLEAR_GCC_CFLAGS_THUMB := -Os
@@ -73,7 +73,7 @@ endif
 
  #Graphite
 ifeq ($(GRAPHITE_OPTS),true)
-   NUCLEAR_GCC_CPPFLAGS += -fgraphite -fgraphite-identity -floop-flatten -floop-parallelize-all -ftree-loop-linear -floop-interchange -floop-strip-mine -floop-block
+   NUCLEAR_GCC_CPPFLAGS += -fgraphite -fgraphite-identity -floop-flatten -ftree-loop-linear -floop-interchange -floop-strip-mine -floop-block
    CLANG_CONFIG_EXTRA_CONLYFLAGS += -fgraphite -fgraphite-identity -floop-flatten -floop-parallelize-all -ftree-loop-linear -floop-interchange -floop-strip-mine -floop-block
 endif
 
